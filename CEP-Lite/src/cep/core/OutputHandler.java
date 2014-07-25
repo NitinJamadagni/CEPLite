@@ -5,7 +5,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONObject;
 
-import android.util.Log;
+
 import cep.coap.client.BasicCoapClient;
 import cep.coap.client.BasicHttpClient;
 
@@ -57,7 +57,7 @@ public class OutputHandler extends Thread{
 						if(temp.has("Termination")){System.out.println("Stopping this thread");break;}
 						
 						httpclient.sendMessage(temp.toString());
-						Log.d("Message",temp.toString());
+						
 					}	
 			}
 		}
