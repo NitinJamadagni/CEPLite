@@ -7,7 +7,8 @@ The basic logic behind this project is that instead of performing all kinds of C
 add a distributed nature to the processing that takes place and perform part/pre processing of the events on the end-devices(like android phones/sensors having Tiny OSs) and then pushing the complex processing to the cloud.
 Will be releasing a implementation for android soon.
 
-To be done/further work in progress:Adding joins over Streams to the engine.(Suggestions welcome!)
+To be done/further work in progress:1)Adding joins over Streams to the engine.(Suggestions welcome!)
+                                    2)Extending support for android.                
 
 Please contact : nitin.jamadagni@gmail.com 
                 for any queries/suggestions/errors found.Will release a detailed documentation
