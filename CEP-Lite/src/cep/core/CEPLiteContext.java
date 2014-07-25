@@ -54,7 +54,7 @@ public class CEPLiteContext {
 		try {
 			outputQueues.add(new JSONObject().put("Termination","terminate!!"));
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		//simplethreadpool.executor.shutdown();

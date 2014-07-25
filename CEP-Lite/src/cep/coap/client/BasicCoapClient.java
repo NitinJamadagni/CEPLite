@@ -29,13 +29,14 @@ public class BasicCoapClient implements CoapClient {
         //System.out.println("Start CoAP Client");
        
         SERVER_ADDRESS=serverAddress;
-        channelManager = (BasicCoapChannelManager) BasicCoapChannelManager.getInstance(); 
+         
     	
     	
     }
       
     public void sendMessage(String payload){
     	
+    	channelManager = (BasicCoapChannelManager) BasicCoapChannelManager.getInstance();
     	try	{
          	clientChannel = (BasicCoapClientChannel) channelManager.connect(this, InetAddress.getByName(SERVER_ADDRESS), PORT);
          }

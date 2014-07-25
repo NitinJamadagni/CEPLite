@@ -15,10 +15,11 @@ import cep.query.patternQuery.continuousSequencePatternQuery;
 import cep.query.patternQuery.sequenceInWindowPatternQuery;
 import cep.query.Query;
 
+
 public class InputHandler {
 		private ArrayList<Query> queries;
 		private LinkedHashMap<String,String> schemaVariables;
-		private SourceStream outputStream;
+		private StreamProcessor outputStream;
 		private String[] currentData;
 		private Long currentTimeStamp;
 		private String[] toSend;
@@ -263,7 +264,7 @@ public class InputHandler {
 			queries.clear();
 		} 
 		
-		public void setOutputHandler(SourceStream streamOutputTo,String in_toSend)
+		public void setOutputHandler(StreamProcessor streamOutputTo,String in_toSend)
 		{
 			this.outputStream=streamOutputTo;
 			if(in_toSend.contains("avg(")||in_toSend.contains("sum(")||in_toSend.contains("max(")) 
@@ -407,7 +408,7 @@ public class InputHandler {
 			else	
 				toSend=in_toSend.split(",");
 		}
-		public void setOutputHandler(SourceStream streamOutputTo)
+		public void setOutputHandler(StreamProcessor streamOutputTo)
 		{
 			this.outputStream=streamOutputTo;
 		}
@@ -742,7 +743,7 @@ public class InputHandler {
 									  objectToSend.put(varname,currentDataMap.get(varname));
 								  }
 								  objectToSend.put("TimeStamp",currentTimeStamp.toString());
-								  
+								  context.addToOutputQueue(objectToSend);
 								  //System.out.println(); 
 							  }
 						}
@@ -997,7 +998,7 @@ public class InputHandler {
 																}
 																
 															}
-									}
+								}
 								else if(windowTime>0)
 								{
 											if(outputStream==null)

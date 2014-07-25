@@ -2,8 +2,8 @@ package cep.core;
 
 public class TimeEventPair {
 
-	private Long time;
-	private String[] event;
+	private final Long time;
+	private final String[] event;
 	public TimeEventPair(long in_time,String[] in_event)
 	{
 		time=in_time;
