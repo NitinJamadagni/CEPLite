@@ -1,36 +1,19 @@
 package cep.core;
 
-import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.LinkedBlockingQueue;
 
-
-
 public class CEPManager{
-	static HashMap<String,StreamProcessor> streamProcessorMap = null;
+	static HashMap<String,SourceStream> sourceStreamMap = null;
 	CEPLiteContext context;
 	//initialize
     public CEPManager()
 	{
-    	streamProcessorMap=new HashMap<String,StreamProcessor>();
+    	sourceStreamMap=new HashMap<String,SourceStream>();
     	context=new CEPLiteContext();
-		
 	}
-    public final void setServerAddress(String serverAddress)
-    {
-    	try {
-			context.setServerAddress(serverAddress);
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-    }
-    public final void setServerAddress(String serverAddress,String config)
-    {
-    	context.setServerAddress(serverAddress,config);
-    }
 	public void createEventQueue(String eventId)
 	{
 		context.addEventQueue(eventId); 
@@ -39,36 +22,36 @@ public class CEPManager{
 	{
 		context.pollingQueues.get(eventId).offer(eventpair); 
 	}
-    public void addStreamProcessor(String name,String schema) throws lessArgumentsException, UnknownHostException 
+    public void addStreamSource(String name,String schema) throws lessArgumentsException 
     {
-		StreamProcessor stream=new StreamProcessor(name,context,schema); 
-		streamProcessorMap.put(name,stream);
+		SourceStream stream=new SourceStream(name,context,schema); 
+		sourceStreamMap.put(name,stream);
 	}
     
-    public final StreamProcessor getSourceStream(String name)
+    public SourceStream getSourceStream(String name)
     {
-    	return streamProcessorMap.get(name);
+    	return sourceStreamMap.get(name);
     }
     
     public void shutDownStream(String streamName)
     {
-    	if(streamProcessorMap.containsKey(streamName))
+    	if(sourceStreamMap.containsKey(streamName))
     	{
-    		streamProcessorMap.get(streamName).shutDownStream();
-    		streamProcessorMap.remove(streamName);
+    		sourceStreamMap.get(streamName).shutDownStream();
+    		sourceStreamMap.remove(streamName);
     	}
 
     }
     public void shutDown()
     {
-    	for(Entry<String,StreamProcessor> entry:streamProcessorMap.entrySet())
+    	for(Entry<String,SourceStream> entry:sourceStreamMap.entrySet())
     	{
     		entry.getValue().shutDownStream(); 
     	}
         for(Map.Entry<String,LinkedBlockingQueue<TimeEventPair>> entry:context.pollingQueues.entrySet())
         {
         	while(true)
-        	{ 	
+        	{ 
         		if(entry.getValue().isEmpty())
         		{
         			entry.getValue().offer(new TimeEventPair(System.currentTimeMillis(),new String[]{"Stop-execution"}));
