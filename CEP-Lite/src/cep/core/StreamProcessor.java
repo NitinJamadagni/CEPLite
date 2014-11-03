@@ -101,6 +101,7 @@ public class StreamProcessor extends Thread{
 									{
 										break;
 									}
+									System.out.println(event.getEvent()[1]); 
 									inputHandler.send(event);
 								
 								//System.out.println("Started polling");	 

@@ -20,7 +20,7 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
-import android.util.Log;
+
 
 
 

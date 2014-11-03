@@ -55,8 +55,8 @@ public class OutputHandler extends Thread{
 					if(temp!=null){
 						 
 						if(temp.has("Termination")){System.out.println("Stopping this thread");break;}
-						
-						httpclient.sendMessage(temp.toString());
+						System.out.println(temp.toString());
+						//httpclient.sendMessage(temp.toString());
 						
 					}	
 			}

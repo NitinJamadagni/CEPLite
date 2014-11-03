@@ -99,6 +99,10 @@ public class InputHandler {
 									{
 										queries.add(new EqualToBooleanQuery_Float(query,queryParameter));
 									}
+									else if(schemaVariables.get(parametersVars[0]).contains("long"))
+									{
+										queries.add(new EqualToBooleanQuery_Long(query,queryParameter));
+									}
 							
 						}	
 						//existing fields
@@ -123,6 +127,10 @@ public class InputHandler {
 										else if(schemaVariables.get(parametersVars[0]).contains("float"))
 										{
 											queries.add(new EqualToBooleanQuery_Float(query,queryParameter));
+										}
+										else if(schemaVariables.get(parametersVars[0]).contains("long"))
+										{
+											queries.add(new EqualToBooleanQuery_Long(query,queryParameter));
 										}
 									
 									}
@@ -163,6 +171,10 @@ public class InputHandler {
 									{
 										queries.add(new notEqualToBooleanQuery_Float(query,queryParameter));
 									}
+									else if(schemaVariables.get(parametersVars[0]).contains("long"))
+									{
+										queries.add(new notEqualToBooleanQuery_Long(query,queryParameter));
+									}
 							
 						}	
 						//existing fields
@@ -187,6 +199,10 @@ public class InputHandler {
 										else if(schemaVariables.get(parametersVars[0]).contains("float"))
 										{
 											queries.add(new notEqualToBooleanQuery_Float(query,queryParameter));
+										}
+										else if(schemaVariables.get(parametersVars[0]).contains("long"))
+										{
+											queries.add(new notEqualToBooleanQuery_Long(query,queryParameter));
 										}
 									
 									}
@@ -226,6 +242,10 @@ public class InputHandler {
 									{
 										queries.add(new moreThanlessThanBooleanQuery_Float(query,queryParameter));
 									}
+									else if(schemaVariables.get(parametersVars[0]).contains("long"))
+									{
+										queries.add(new moreThanlessThanBooleanQuery_Long(query,queryParameter));
+									}
 							
 						}	
 						//existing fields
@@ -246,6 +266,10 @@ public class InputHandler {
 										else if(schemaVariables.get(parametersVars[0]).contains("float"))
 										{
 											queries.add(new moreThanlessThanBooleanQuery_Float(query,queryParameter));
+										}
+										else if(schemaVariables.get(parametersVars[0]).contains("long"))
+										{
+											queries.add(new moreThanlessThanBooleanQuery_Long(query,queryParameter));
 										}
 									
 									}
@@ -720,7 +744,7 @@ public class InputHandler {
 						else if(outputStream!=null)
 						{
 							if(toSend!=null)
-							 {
+							 {	
 								 ArrayList<String> list_temp=new ArrayList<String>();
 								 for(String varname:toSend)
 								 {
@@ -815,6 +839,18 @@ public class InputHandler {
 						else if(query instanceof moreThanlessThanBooleanQuery_Double)
 						{
 							variable=((moreThanlessThanBooleanQuery_Double) query).process(currentDataMap);
+						}
+						else if(query instanceof EqualToBooleanQuery_Long)
+						{
+							variable=((EqualToBooleanQuery_Long) query).process(currentDataMap);
+						}
+						else if(query instanceof notEqualToBooleanQuery_Long)
+						{
+							variable=((notEqualToBooleanQuery_Long) query).process(currentDataMap);
+						}
+						else if(query instanceof moreThanlessThanBooleanQuery_Long)
+						{
+							variable=((moreThanlessThanBooleanQuery_Long) query).process(currentDataMap);
 						}
 						else if(query instanceof ComplexPredicateQuery)
 						{

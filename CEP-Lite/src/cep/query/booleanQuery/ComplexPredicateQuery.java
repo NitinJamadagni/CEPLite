@@ -221,6 +221,10 @@ public class ComplexPredicateQuery extends BooleanQuery {
 													{
 														queries=(new EqualToBooleanQuery_Float(currentQuery,queryParameter));
 													}
+													else if(schemaVariables.get(parametersVars[0]).contains("long"))
+													{
+														queries=(new EqualToBooleanQuery_Long(currentQuery,queryParameter));
+													}
 											
 										}	
 										//existing fields
@@ -245,6 +249,10 @@ public class ComplexPredicateQuery extends BooleanQuery {
 														else if(schemaVariables.get(parametersVars[0]).contains("float"))
 														{
 															queries=(new EqualToBooleanQuery_Float(currentQuery,queryParameter));
+														}
+														else if(schemaVariables.get(parametersVars[0]).contains("long"))
+														{
+															queries=(new EqualToBooleanQuery_Long(currentQuery,queryParameter));
 														}
 													}
 													else
@@ -282,7 +290,10 @@ public class ComplexPredicateQuery extends BooleanQuery {
 													{
 														queries=(new notEqualToBooleanQuery_Float(currentQuery,queryParameter));
 													}
-											
+													else if(schemaVariables.get(parametersVars[0]).contains("long"))
+													{
+														queries=(new notEqualToBooleanQuery_Long(currentQuery,queryParameter));
+													}
 										}	
 										//existing fields
 										else
@@ -306,6 +317,10 @@ public class ComplexPredicateQuery extends BooleanQuery {
 														else if(schemaVariables.get(parametersVars[0]).contains("float"))
 														{
 															queries=(new notEqualToBooleanQuery_Float(currentQuery,queryParameter));
+														}
+														else if(schemaVariables.get(parametersVars[0]).contains("long"))
+														{
+															queries=(new notEqualToBooleanQuery_Long(currentQuery,queryParameter));
 														}
 													}
 													else
@@ -343,6 +358,10 @@ public class ComplexPredicateQuery extends BooleanQuery {
 													{
 														queries=(new moreThanlessThanBooleanQuery_Float(currentQuery,queryParameter));
 													}
+													else if(schemaVariables.get(parametersVars[0]).contains("long"))
+													{
+														queries=(new moreThanlessThanBooleanQuery_Long(currentQuery,queryParameter));
+													}
 											
 										}	
 										//existing fields
@@ -363,6 +382,10 @@ public class ComplexPredicateQuery extends BooleanQuery {
 														else if(schemaVariables.get(parametersVars[0]).contains("float"))
 														{
 															queries=(new moreThanlessThanBooleanQuery_Float(currentQuery,queryParameter));
+														}
+														else if(schemaVariables.get(parametersVars[0]).contains("long"))
+														{
+															queries=(new moreThanlessThanBooleanQuery_Long(currentQuery,queryParameter));
 														}
 													}
 													else
@@ -419,7 +442,19 @@ public class ComplexPredicateQuery extends BooleanQuery {
 								else if(queries instanceof moreThanlessThanBooleanQuery_Double)
 								{
 									variable=((moreThanlessThanBooleanQuery_Double) queries).process(currentDataMap);
-								}								
+								}
+								else if(queries instanceof EqualToBooleanQuery_Long)
+								{
+									variable=((EqualToBooleanQuery_Long) queries).process(currentDataMap);
+								}
+								else if(queries instanceof notEqualToBooleanQuery_Long)
+								{
+									variable=((notEqualToBooleanQuery_Long) queries).process(currentDataMap);
+								}
+								else if(queries instanceof moreThanlessThanBooleanQuery_Long)
+								{
+									variable=((moreThanlessThanBooleanQuery_Long) queries).process(currentDataMap);
+								}
 							}
 //------------------------------------------------------------------------------------------------------------							
 							//if(currentBoolean=="")

@@ -11,14 +11,17 @@ import cep.query.booleanQuery.BooleanQuery;
 import cep.query.booleanQuery.EqualToBooleanQuery_Double;
 import cep.query.booleanQuery.EqualToBooleanQuery_Float;
 import cep.query.booleanQuery.EqualToBooleanQuery_Int;
+import cep.query.booleanQuery.EqualToBooleanQuery_Long;
 import cep.query.booleanQuery.EqualToBooleanQuery_String;
 import cep.query.booleanQuery.moreThanlessThanBooleanQuery_Double;
 import cep.query.booleanQuery.moreThanlessThanBooleanQuery_Float;
 import cep.query.booleanQuery.moreThanlessThanBooleanQuery_Int;
+import cep.query.booleanQuery.moreThanlessThanBooleanQuery_Long;
 import cep.query.booleanQuery.notEqualToBooleanQuery_Double;
 import cep.query.booleanQuery.notEqualToBooleanQuery_Float;
 import cep.query.booleanQuery.notEqualToBooleanQuery_Int;
 import cep.query.booleanQuery.notEqualToBooleanQuery_String;
+import cep.query.booleanQuery.notEqualToBooleanQuery_Long;
 
 public class continuousSequencePatternQuery extends PatternQuery{
 		private int windowWidth=0;
@@ -82,6 +85,10 @@ public class continuousSequencePatternQuery extends PatternQuery{
 										{
 											queries.add(new EqualToBooleanQuery_Float(var,queryParameter));
 										}
+										else if(schemaVariables.get(parametersVars[0]).contains("long"))
+										{
+											queries.add(new EqualToBooleanQuery_Long(var,queryParameter));
+										}
 								
 							}	
 							//existing fields
@@ -106,6 +113,10 @@ public class continuousSequencePatternQuery extends PatternQuery{
 											else if(schemaVariables.get(parametersVars[0]).contains("float"))
 											{
 												queries.add(new EqualToBooleanQuery_Float(var,queryParameter));
+											}
+											else if(schemaVariables.get(parametersVars[0]).contains("long"))
+											{
+												queries.add(new EqualToBooleanQuery_Long(var,queryParameter));
 											}
 										
 										}
@@ -144,6 +155,10 @@ public class continuousSequencePatternQuery extends PatternQuery{
 										{
 											queries.add(new notEqualToBooleanQuery_Float(var,queryParameter));
 										}
+										else if(schemaVariables.get(parametersVars[0]).contains("long"))
+										{
+											queries.add(new notEqualToBooleanQuery_Long(var,queryParameter));
+										}
 								
 							}	
 							//existing fields
@@ -168,6 +183,10 @@ public class continuousSequencePatternQuery extends PatternQuery{
 											else if(schemaVariables.get(parametersVars[0]).contains("float"))
 											{
 												queries.add(new notEqualToBooleanQuery_Float(var,queryParameter));
+											}
+											else if(schemaVariables.get(parametersVars[0]).contains("long"))
+											{
+												queries.add(new notEqualToBooleanQuery_Long(var,queryParameter));
 											}
 										
 										}
@@ -206,6 +225,10 @@ public class continuousSequencePatternQuery extends PatternQuery{
 										{
 											queries.add(new moreThanlessThanBooleanQuery_Float(var,queryParameter));
 										}
+										else if(schemaVariables.get(parametersVars[0]).contains("long"))
+										{
+											queries.add(new moreThanlessThanBooleanQuery_Long(var,queryParameter));
+										}
 								
 							}	
 							//existing fields
@@ -226,6 +249,10 @@ public class continuousSequencePatternQuery extends PatternQuery{
 											else if(schemaVariables.get(parametersVars[0]).contains("float"))
 											{
 												queries.add(new moreThanlessThanBooleanQuery_Float(var,queryParameter));
+											}
+											else if(schemaVariables.get(parametersVars[0]).contains("long"))
+											{
+												queries.add(new moreThanlessThanBooleanQuery_Long(var,queryParameter));
 											}
 										
 										}
@@ -315,6 +342,18 @@ public class continuousSequencePatternQuery extends PatternQuery{
 														{
 															variable=((moreThanlessThanBooleanQuery_Double) queries.get(patternDone)).process(currentDataMap);
 														}
+														else if(queries.get(patternDone) instanceof EqualToBooleanQuery_Long)
+														{
+															variable=((EqualToBooleanQuery_Long) queries.get(patternDone)).process(currentDataMap);
+														}
+														else if(queries.get(patternDone) instanceof notEqualToBooleanQuery_Long)
+														{
+															variable=((notEqualToBooleanQuery_Long) queries.get(patternDone)).process(currentDataMap);
+														}
+														else if(queries.get(patternDone) instanceof moreThanlessThanBooleanQuery_Long)
+														{
+															variable=((moreThanlessThanBooleanQuery_Long) queries.get(patternDone)).process(currentDataMap);
+														}
 														if(variable==true)
 														{
 															patternDone++;
@@ -371,6 +410,18 @@ public class continuousSequencePatternQuery extends PatternQuery{
 															else if(queries.get(0) instanceof moreThanlessThanBooleanQuery_Double)
 															{
 																variable=((moreThanlessThanBooleanQuery_Double) queries.get(0)).process(currentDataMap);
+															}
+															else if(queries.get(0) instanceof EqualToBooleanQuery_Long)
+															{
+																variable=((EqualToBooleanQuery_Long) queries.get(0)).process(currentDataMap);
+															}
+															else if(queries.get(0) instanceof notEqualToBooleanQuery_Long)
+															{
+																variable=((notEqualToBooleanQuery_Long) queries.get(0)).process(currentDataMap);
+															}
+															else if(queries.get(0) instanceof moreThanlessThanBooleanQuery_Long)
+															{
+																variable=((moreThanlessThanBooleanQuery_Long) queries.get(0)).process(currentDataMap);
 															}
 														}
 														if(variable==true)
@@ -480,6 +531,18 @@ public class continuousSequencePatternQuery extends PatternQuery{
 															{
 																variable=((moreThanlessThanBooleanQuery_Double) queries.get(patternDone)).process(currentDataMap);
 															}
+															else if(queries.get(patternDone) instanceof EqualToBooleanQuery_Long)
+															{
+																variable=((EqualToBooleanQuery_Long) queries.get(patternDone)).process(currentDataMap);
+															}
+															else if(queries.get(patternDone) instanceof notEqualToBooleanQuery_Long)
+															{
+																variable=((notEqualToBooleanQuery_Long) queries.get(patternDone)).process(currentDataMap);
+															}
+															else if(queries.get(patternDone) instanceof moreThanlessThanBooleanQuery_Long)
+															{
+																variable=((moreThanlessThanBooleanQuery_Long) queries.get(patternDone)).process(currentDataMap);
+															}
 															if(variable==true)
 															{
 																patternDone++;
@@ -535,6 +598,19 @@ public class continuousSequencePatternQuery extends PatternQuery{
 																else if(queries.get(0) instanceof moreThanlessThanBooleanQuery_Double)
 																{
 																	variable=((moreThanlessThanBooleanQuery_Double) queries.get(0)).process(currentDataMap);
+																}
+																
+																else if(queries.get(0) instanceof EqualToBooleanQuery_Long)
+																{
+																	variable=((EqualToBooleanQuery_Long) queries.get(0)).process(currentDataMap);
+																}
+																else if(queries.get(0) instanceof notEqualToBooleanQuery_Long)
+																{
+																	variable=((notEqualToBooleanQuery_Long) queries.get(0)).process(currentDataMap);
+																}
+																else if(queries.get(0) instanceof moreThanlessThanBooleanQuery_Long)
+																{
+																	variable=((moreThanlessThanBooleanQuery_Long) queries.get(0)).process(currentDataMap);
 																}
 															}
 															if(variable==true)
